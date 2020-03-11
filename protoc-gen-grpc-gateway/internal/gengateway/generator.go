@@ -113,6 +113,11 @@ func (g *generator) Generate(targets []*descriptor.File) ([]*plugin.CodeGenerato
 		base := strings.TrimSuffix(name, ext)
 		output := fmt.Sprintf("%s.pb.gw.go", base)
 		fmt.Println("#########Here#########")
+		sfsdf
+		asdf
+		asd
+		f
+		asf
 		files = append(files, &plugin.CodeGeneratorResponse_File{
 			Name:    proto.String(output),
 			Content: proto.String(string(formatted)),
