@@ -98,14 +98,12 @@ func (g *generator) Generate(targets []*descriptor.File) ([]*plugin.CodeGenerato
 			continue
 		}
 		if err != nil {
-			// return nil, err
-			continue
+			return nil, err
 		}
 		formatted, err := format.Source([]byte(code))
 		if err != nil {
 			glog.Errorf("%v: %s", err, code)
-			// return nil, err
-			continue
+			return nil, err
 		}
 		name := file.GetName()
 		if g.pathType == pathTypeImport && file.GoPkg.Path != "" {
