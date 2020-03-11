@@ -139,7 +139,7 @@ func emitResp(resp *plugin.CodeGeneratorResponse) {
 	buf1 := &bytes.Buffer{}
 	buf1.WriteString("// Bla\n")
 	buf1.Write(buf)
-	fmt.Print(buf)
+	fmt.Print(buf1)
 	// if _, err := os.Stdout.Write(buf); err != nil {
 	// 	glog.Fatal(err)
 	// }
