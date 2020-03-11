@@ -13,7 +13,6 @@ import (
 	"fmt"
 	"os"
 	"strings"
-	"bytes"
 
 	"github.com/golang/glog"
 	"github.com/golang/protobuf/proto"
