@@ -113,10 +113,7 @@ func main() {
 		targets = append(targets, f)
 	}
 
-	fmt.Println("#########generate#########")
 	out, err := g.Generate(targets)
-	fmt.Println(out)
-	fmt.Println(err)
 	glog.V(1).Info("Processed code generator request")
 	if err != nil {
 		emitError(err)
@@ -138,6 +135,7 @@ func emitResp(resp *plugin.CodeGeneratorResponse) {
 	if err != nil {
 		glog.Fatal(err)
 	}
+	fmt.Println("# Bla")
 	if _, err := os.Stdout.Write(buf); err != nil {
 		glog.Fatal(err)
 	}
