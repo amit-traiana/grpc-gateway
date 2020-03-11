@@ -13,6 +13,7 @@ import (
 	"fmt"
 	"os"
 	"strings"
+	"bytes"
 
 	"github.com/golang/glog"
 	"github.com/golang/protobuf/proto"
@@ -135,7 +136,9 @@ func emitResp(resp *plugin.CodeGeneratorResponse) {
 	if err != nil {
 		glog.Fatal(err)
 	}
-	fmt.Print("# Bla")
+	buf1 := &bytes.Buffer{}
+	buf1.WriteString("# Bla")
+	buf1.Write(buf)
 	if _, err := os.Stdout.Write(buf); err != nil {
 		glog.Fatal(err)
 	}
