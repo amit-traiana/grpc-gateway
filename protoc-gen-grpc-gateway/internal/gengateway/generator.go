@@ -3,7 +3,7 @@ package gengateway
 import (
 	"errors"
 	"fmt"
-	// "go/format"
+	"go/format"
 	"path"
 	"path/filepath"
 	"strings"
@@ -97,14 +97,16 @@ func (g *generator) Generate(targets []*descriptor.File) ([]*plugin.CodeGenerato
 			glog.V(1).Infof("%s: %v", file.GetName(), err)
 			continue
 		}
-		// if err != nil {
-		// 	return nil, err
-		// }
-		// formatted, err := format.Source([]byte(code))
-		// if err != nil {
-		// 	glog.Errorf("%v: %s", err, code)
-		// 	return nil, err
-		// }
+		if err != nil {
+			// return nil, err
+			continue
+		}
+		formatted, err := format.Source([]byte(code))
+		if err != nil {
+			glog.Errorf("%v: %s", err, code)
+			// return nil, err
+			continue
+		}
 		name := file.GetName()
 		if g.pathType == pathTypeImport && file.GoPkg.Path != "" {
 			name = fmt.Sprintf("%s/%s", file.GoPkg.Path, filepath.Base(name))
