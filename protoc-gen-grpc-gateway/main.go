@@ -115,6 +115,8 @@ func main() {
 
 	fmt.Println("#########generate#########")
 	out, err := g.Generate(targets)
+	fmt.Println(out)
+	fmt.Println(err)
 	glog.V(1).Info("Processed code generator request")
 	if err != nil {
 		emitError(err)
