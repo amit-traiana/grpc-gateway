@@ -135,7 +135,7 @@ func emitResp(resp *plugin.CodeGeneratorResponse) {
 	if err != nil {
 		glog.Fatal(err)
 	}
-	fmt.Println("# Bla")
+	fmt.Print("# Bla")
 	if _, err := os.Stdout.Write(buf); err != nil {
 		glog.Fatal(err)
 	}
