@@ -93,11 +93,11 @@ func (g *generator) Generate(targets []*descriptor.File) ([]*plugin.CodeGenerato
 	for _, file := range targets {
 		glog.V(1).Infof("Processing %s", file.GetName())
 		code, err := g.generate(file)
+		fmt.Println("HI")
 		if err == errNoTargetService {
 			glog.V(1).Infof("%s: %v", file.GetName(), err)
 			continue
 		}
-		fmt.Println("HI")
 		if err != nil {
 			return nil, err
 		}
