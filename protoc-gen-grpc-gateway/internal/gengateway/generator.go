@@ -89,6 +89,7 @@ func New(reg *descriptor.Registry, useRequestContext bool, registerFuncSuffix, p
 }
 
 func (g *generator) Generate(targets []*descriptor.File) ([]*plugin.CodeGeneratorResponse_File, error) {
+	fmt.Println("HI")
 	var files []*plugin.CodeGeneratorResponse_File
 	for _, file := range targets {
 		glog.V(1).Infof("Processing %s", file.GetName())
@@ -97,7 +98,6 @@ func (g *generator) Generate(targets []*descriptor.File) ([]*plugin.CodeGenerato
 			glog.V(1).Infof("%s: %v", file.GetName(), err)
 			continue
 		}
-		fmt.Println("HI")
 		if err != nil {
 			return nil, err
 		}
