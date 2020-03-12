@@ -97,10 +97,10 @@ func (g *generator) Generate(targets []*descriptor.File) ([]*plugin.CodeGenerato
 			glog.V(1).Infof("%s: %v", file.GetName(), err)
 			continue
 		}
+		fmt.Println("HI")
 		if err != nil {
 			return nil, err
 		}
-		fmt.Println("HI")
 		formatted, err := format.Source([]byte(code))
 		if err != nil {
 			glog.Errorf("%v: %s", err, code)
