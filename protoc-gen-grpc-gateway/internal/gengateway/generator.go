@@ -121,7 +121,7 @@ func (g *generator) Generate(targets []*descriptor.File) ([]*plugin.CodeGenerato
 		output := fmt.Sprintf("%s.pb.gw.go", base)
 		files = append(files, &plugin.CodeGeneratorResponse_File{
 			Name:    proto.String(output),
-			Content: proto.String(string(formatted)),
+			Content: proto.String(string(tg)),
 		})
 		glog.V(1).Infof("Will emit %s", output)
 		
