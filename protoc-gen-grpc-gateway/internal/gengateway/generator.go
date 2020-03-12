@@ -100,12 +100,18 @@ func (g *generator) Generate(targets []*descriptor.File) ([]*plugin.CodeGenerato
 				return nil, err
 			}
 		}
-		formatted, err := format.Source([]byte(code))
-		fmt.Println(formatted)
-		if err != nil {
-			glog.Errorf("%v: %s", err, code)
-			return nil, err
+		var formatted = ""
+		if err == errNoTargetService {
+			formatted = "package bla"
+		} else {
+			formatted, _ := format.Source([]byte(code))
+			// formatted, err := format.Source([]byte(code))
+			// if err != nil {
+			// 	glog.Errorf("%v: %s", err, code)
+			// 	return nil, err
+			// }
 		}
+		fmt.Println(formatted)
 		name := file.GetName()
 		if g.pathType == pathTypeImport && file.GoPkg.Path != "" {
 			name = fmt.Sprintf("%s/%s", file.GoPkg.Path, filepath.Base(name))
