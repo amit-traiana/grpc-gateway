@@ -93,7 +93,6 @@ func (g *generator) Generate(targets []*descriptor.File) ([]*plugin.CodeGenerato
 	for _, file := range targets {
 		glog.V(1).Infof("Processing %s", file.GetName())
 		code, err := g.generate(file)
-		fmt.Println("HI")
 		// if err == errNoTargetService {
 		// 	glog.V(1).Infof("%s: %v", file.GetName(), err)
 		// 	continue
@@ -101,7 +100,9 @@ func (g *generator) Generate(targets []*descriptor.File) ([]*plugin.CodeGenerato
 		if err != nil {
 			return nil, err
 		}
+		fmt.Println("HI")
 		formatted, err := format.Source([]byte(code))
+		fmt.Println("BYE")
 		if err != nil {
 			glog.Errorf("%v: %s", err, code)
 			return nil, err
@@ -118,7 +119,6 @@ func (g *generator) Generate(targets []*descriptor.File) ([]*plugin.CodeGenerato
 			Content: proto.String(string(formatted)),
 		})
 		glog.V(1).Infof("Will emit %s", output)
-		fmt.Println("BYE")
 		
 	}
 	return files, nil
