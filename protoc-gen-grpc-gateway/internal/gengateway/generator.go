@@ -98,6 +98,7 @@ func (g *generator) Generate(targets []*descriptor.File) ([]*plugin.CodeGenerato
 			glog.V(1).Infof("%s: %v", file.GetName(), err)
 			continue
 		}
+		fmt.Println("BYE")
 		if err != nil {
 			return nil, err
 		}
