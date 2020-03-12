@@ -102,7 +102,7 @@ func (g *generator) Generate(targets []*descriptor.File) ([]*plugin.CodeGenerato
 		}
 		var tg []byte
 		if err == errNoTargetService {
-			tg = []byte("package bla")
+			tg = []byte("package bla\n")
 		} else {
 			formatted, err := format.Source([]byte(code))
 			if err != nil {
@@ -111,7 +111,7 @@ func (g *generator) Generate(targets []*descriptor.File) ([]*plugin.CodeGenerato
 			}
 			tg = formatted
 		}
-		fmt.Println(tg)
+		// fmt.Println(tg)
 		name := file.GetName()
 		if g.pathType == pathTypeImport && file.GoPkg.Path != "" {
 			name = fmt.Sprintf("%s/%s", file.GoPkg.Path, filepath.Base(name))
