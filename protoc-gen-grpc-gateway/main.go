@@ -131,12 +131,11 @@ func emitError(err error) {
 }
 
 func emitResp(resp *plugin.CodeGeneratorResponse) {
-	fmt.Print(resp)
-	// buf, err := proto.Marshal(resp)
-	// if err != nil {
-	// 	glog.Fatal(err)
-	// }
-	// if _, err := os.Stdout.Write(buf); err != nil {
-	// 	glog.Fatal(err)
-	// }
+	buf, err := proto.Marshal(resp)
+	if err != nil {
+		glog.Fatal(err)
+	}
+	if _, err := os.Stdout.Write(buf); err != nil {
+		glog.Fatal(err)
+	}
 }
