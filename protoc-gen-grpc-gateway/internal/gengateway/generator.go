@@ -93,20 +93,19 @@ func (g *generator) Generate(targets []*descriptor.File) ([]*plugin.CodeGenerato
 	for _, file := range targets {
 		glog.V(1).Infof("Processing %s", file.GetName())
 		code, err := g.generate(file)
-		if err == errNoTargetService {
-			glog.V(1).Infof("%s: %v", file.GetName(), err)
-			// continue
+		if err != nil {
+			if err == errNoTargetService {
+				glog.V(1).Infof("%s: %v", file.GetName(), err)
+			} else {
+				return nil, err
+			}
 		}
-		if err != nil && err != errNoTargetService {
-			return nil, err
-		}
-		// fmt.Println("HI")
 		formatted, err := format.Source([]byte(code))
+		fmt.Println(formatted)
 		if err != nil {
 			glog.Errorf("%v: %s", err, code)
 			return nil, err
 		}
-		// fmt.Println("BYE")
 		name := file.GetName()
 		if g.pathType == pathTypeImport && file.GoPkg.Path != "" {
 			name = fmt.Sprintf("%s/%s", file.GoPkg.Path, filepath.Base(name))
